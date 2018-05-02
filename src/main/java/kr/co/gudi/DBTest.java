@@ -15,16 +15,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import kr.co.gudi.DBCon;
+
 public class DBTest extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet()");
 		
-		String resource = "kr/co/gudi/mybatis-config.xml";
-		InputStream inputStream = Resources.getResourceAsStream(resource);
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		
-		System.out.println(sqlSessionFactory);
-		
+		DBCon con = new DBCon();
+		SqlSessionFactory sqlSessionFactory = con.getConn();
 		SqlSession session = sqlSessionFactory.openSession(true);
 		HashMap<String, Object> result = session.selectOne("test.selectTest");
 		System.out.println(result);

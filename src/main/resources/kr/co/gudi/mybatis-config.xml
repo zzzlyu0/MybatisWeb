@@ -16,5 +16,6 @@
   </environments>
   <mappers>
     <mapper resource="kr/co/gudi/sql/TestMapper.xml"/>
+    <mapper resource="kr/co/gudi/sql/UserMapper.xml"/>
   </mappers>
 </configuration>
